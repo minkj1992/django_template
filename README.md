@@ -3,37 +3,57 @@
 # 1. 기본 환경 세팅
 - 1) 가상환경 켜주기
 
-
 - 2) `pip install django`
+
+
 ![](./img/1.PNG)
 
+
 - 3) `django-admin startproject myblog`
+
+
 ![](./img/2.PNG)
 
 
 ![](./img/3.PNG)
+
+
 [기본 폴더 모습] 
 
+
 - 4) `python manage.py startapp blog`
+
+
 ![](./img/4.PNG)
 
+
 ![](./img/5.PNG)
+
 
 - 5) `installed_apps`에 `blog` 알려주기
 
 myblog/settings.py
+
+
 ![](./img/6.PNG)
 
 
+
 - 6) 첫 시작화면(`blog/templates/home.html`) 만들어주기 
+
+
 ![](./img/17.PNG)
+
 
 
 - 7) url 부착
 
 `path(url이름 , app이름.view파일.함수이름 , name="별명"),`
 
-blog/urls.py
+
+<details>
+<summary><strong>blog/urls.py</strong></summary>
+    
 ```python
 import blog.views
 urlpatterns = [
@@ -42,23 +62,25 @@ urlpatterns = [
 ]
 
 ```
+</details>
+
 
 - 8) views 파일에 home 함수 만들어주기
 
-blog/views.py
+
+<details>
+<summary><strong>blog/views.py</strong></summary>
+
 ```python
 def home(request):
     return render(request, 'home.html')
 ```
-
+</details>
 
 - 9) 서버실행
 `python manage.py runserver`
 
 아무것도 안보이면 정상
-
-
-
 
 
 
@@ -69,11 +91,14 @@ def home(request):
 - 장고는 기본적으로 웹페이지에 사용할 정적 파일들을 한곳에 모아서 보관하는데, 이 위치를 알려준다고 생각하면 된다.
 
 
-myblog/settings.py
+<details>
+<summary><strong>myblog/settings.py</strong></summary>
 ```python
 #  스태틱 파일들이 존재하는 폴더 위치를 알려준다.
 STATICFILES_DIRS = (os.path.join('static'),)
 ```
+</details>
+
 
 ![](./img/7.PNG)
 
@@ -110,7 +135,9 @@ STATICFILES_DIRS = (os.path.join('static'),)
 
 2. static 붙여주기
 
-blog/templates/home.html
+<details>
+<summary><strong>blog/templates/home.html</strong></summary>
+
 ```python
 {% load staticfiles %}
 <!doctype html>
@@ -135,12 +162,15 @@ blog/templates/home.html
   </head>
 
 ```
-
+</details>
 
 3. script에도 붙여주자
 
 wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다.
-blog/templates/home.html
+
+<details>
+<summary><strong>blog/templates/home.html</strong></summary>
+
 ```python
 
 <div class="wrap">
@@ -164,10 +194,19 @@ blog/templates/home.html
 
 ```
 
+</details>
+
 
 `UnicodeDecodeError: 'cp949' codec can't decode byte 0xe2 in position 9735: illegal multibyte sequence` 에러가 뜸...
 
+
+
 찾아보니까 js 앞에 `'`를 안붙였었음
+
+
+<details>
+<summary><strong>blog/templates/home.html 수정</strong></summary>
+ 
 ```python
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
@@ -178,6 +217,9 @@ blog/templates/home.html
     <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 ```
+</details>
+
+
 
 ![](./img/10.PNG)
 
@@ -186,6 +228,7 @@ blog/templates/home.html
 4. home.html 요약
 
 복잡한 템플릿을 분석해보자면 크게 4가지 요소로 나눠진다.
+
 
 ```html
 <body>
@@ -206,6 +249,10 @@ blog/templates/home.html
 
 5. 먼저 `2. carousel` 바꿔주자
 
+
+<details>
+<summary><strong>blog/templates/home.html</strong></summary>
+    
 ```html
       <section class="site-section pt-5 pb-5">
         <div class="container">
@@ -237,6 +284,7 @@ blog/templates/home.html
       </section>
 ```
 
+</details>
 
 6. `3.본문` 을 수정해주자
 
@@ -253,6 +301,10 @@ blog/templates/home.html
 
 - 5. `footer` 필요없는거 모두 삭제 후 가운데 정렬 처리
 
+
+<details>
+<summary><strong>blog/templates/home.html</strong></summary>
+    
 ```html
       <section class="site-section py-sm">
         <div class="container">
@@ -307,10 +359,13 @@ blog/templates/home.html
         </div>
       </section>
 ```
+</details>
 
 
 지금까지의 파일 혹시 놓쳤으면 복붙하세여
-blog/templates/home.html
+
+<details>
+<summary><strong>blog/templates/home.html 전체 코드</strong></summary>
 ```html
 {% load staticfiles %}
 <!doctype html>
@@ -544,7 +599,7 @@ blog/templates/home.html
   </body>
 </html>
 ```
-
+</details>
 
 # 3. DB 연동하는법
 
