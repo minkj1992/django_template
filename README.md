@@ -612,7 +612,9 @@ wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다
 
 
 ### 1) 클래스 정의
-`blog/models.py`
+
+<details>
+<summary><strong>blog/models.py</strong></summary>
 
 ```python
 from django.db import models
@@ -634,11 +636,15 @@ class Post(models.Model):
     # 글 이미지
     file = models.FileField(null=True)
 ```
+</details>
+
 
 ### 2) Media 설정 
 - 글을 게시할때 upload하기 위해서는 media 디렉토리가 필요하다.
 
-myblog/settings.py
+
+<details>
+<summary><strong>myblog/settings.py</strong></summary>
 ```python
 
 STATIC_URL = '/static/'
@@ -649,12 +655,17 @@ STATICFILES_DIRS = (os.path.join('static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ```
+</details>
+
 
 ### 3) 이후 static 폴더 처럼 media 폴더 생성
 
+
 ### 4)  url 설정에 upload시 `MEDIA_ROOT`에 파일이 저장되도록 설정한다.
 
-urls.py
+<details>
+<summary><strong>blog/urls.py</strong></summary>
+
 ```python
 from django.contrib import admin
 from django.urls import path
@@ -669,9 +680,13 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # 파일 업로드 하기 위해서
 
 ```
+</details>
+
 ### 5) admin page에서 Post를 생성 가능하도록한다.  
 
-admin.py
+<details>
+<summary><strong>blog/admin.py</strong></summary>
+
 ```python
 from django.contrib import admin
 
@@ -681,9 +696,11 @@ from .models import Post
 
 admin.site.register(Post)
 ```
-
+</detail>
 
 ### 6) 일단 실행해보자
+
+
 - `python manage.py makemigrations `
 - `python manage.py migrate `
 
@@ -694,30 +711,38 @@ admin.site.register(Post)
 
 ### 7) admin 들어가서 post 생성
 
+
 ![](./img/13.PNG)
 
 
 
 ### 7) post의 목록을 title로 보여주고 싶다면 
 
-`blog/models.py`
+
+blog/models.py
 
 ```python
     def __str__(self):
         return self.title
 ```
 
+
+
 ![](./img/14.PNG)
 
+
 이제 대략 6개 정도 생성해보자(view에서 예쁘게 보이도록 하기위해서)
+
 
 ![](./img/15.PNG)
 
 
-
 ### 8) `views.py`-> `home.html`로  Post들 전달하기
-views.py
-```
+
+
+<details>
+<summary><strong>blog/views.py</strong></summary>
+```python
 from django.shortcuts import render
 
 from .models import Post
@@ -726,9 +751,11 @@ def home(request):
     posts = Post.objects.all().order_by('-created_at')
     return render(request, 'home.html',{'posts':posts})
 ```
+</details>
 
 ### 8) `home.html`에서 Post들 받기
-home.html
+<details>
+<summary><strong>blog/templates/home.html</strong></summary>
 ```python
                 {% for post in posts %}
                 <div class="col-md-6">
@@ -748,12 +775,18 @@ home.html
                 </div>
                 {% endfor %}
 ```
+</details>
+
 
 `img src="{{ post.file.url }}"` 이부분이 중요, media로 저장한 파일은 .url로 가져올 수 있다.
 
 
 
 수정된  페이지 모습
+
+
+
+
 ![](./img/16.PNG)
 
 
