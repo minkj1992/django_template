@@ -1,15 +1,15 @@
 [템플릿 자료](https://colorlib.com/thank-you-for-downloading/?dlm-dp-dl=2210)
 
 # 1. 기본 환경 세팅
-- 1) 가상환경 켜주기
+### 1) 가상환경 켜주기
 
-- 2) `pip install django`
+### 2) `pip install django`
 
 
 ![](./img/1.PNG)
 
 
-- 3) `django-admin startproject myblog`
+### 3) `django-admin startproject myblog`
 
 
 ![](./img/2.PNG)
@@ -21,7 +21,7 @@
 [기본 폴더 모습] 
 
 
-- 4) `python manage.py startapp blog`
+### 4) `python manage.py startapp blog`
 
 
 ![](./img/4.PNG)
@@ -30,7 +30,7 @@
 ![](./img/5.PNG)
 
 
-- 5) `installed_apps`에 `blog` 알려주기
+### 5) `installed_apps`에 `blog` 알려주기
 
 myblog/settings.py
 
@@ -39,14 +39,14 @@ myblog/settings.py
 
 
 
-- 6) 첫 시작화면(`blog/templates/home.html`) 만들어주기 
+### 6) 첫 시작화면(`blog/templates/home.html`) 만들어주기 
 
 
 ![](./img/17.PNG)
 
 
 
-- 7) url 부착
+### 7) url 부착
 
 `path(url이름 , app이름.view파일.함수이름 , name="별명"),`
 
@@ -65,7 +65,7 @@ urlpatterns = [
 </details>
 
 
-- 8) views 파일에 home 함수 만들어주기
+### 8) views 파일에 home 함수 만들어주기
 
 
 <details>
@@ -77,7 +77,7 @@ def home(request):
 ```
 </details>
 
-- 9) 서버실행
+### 9) 서버실행
 `python manage.py runserver`
 
 아무것도 안보이면 정상
@@ -86,7 +86,7 @@ def home(request):
 
 # 2. Template 연동하는법
 
-## 1) `static` 루트를 장고에게 알려준다.
+### 1) `static` 루트를 장고에게 알려준다.
 
 - 장고는 기본적으로 웹페이지에 사용할 정적 파일들을 한곳에 모아서 보관하는데, 이 위치를 알려준다고 생각하면 된다.
 
@@ -104,19 +104,20 @@ STATICFILES_DIRS = (os.path.join('static'),)
 
 
 
-## 2) 폴더 생성 및 파일 업로드
+### 2) 폴더 생성 및 파일 업로드
 
 - `myblog/blog`
 - `myblog/myblog`
 - `myblog/static`
 
-1. `static` 폴더 생성(blog와 같은 레벨의 디렉토리에)
+- `static` 폴더 생성(blog와 같은 레벨의 디렉토리에)
 
-2. 생성한 `static`폴더를 우측 클릭 `Reveal in Explorer`을 눌러 폴더를 켜주고, static 폴더안에 템플릿 스태틱 파일들을 넣어준다.
+- 생성한 `static`폴더를 우측 클릭 `Reveal in Explorer`을 눌러 폴더를 켜주고, static 폴더안에 템플릿 스태틱 파일들을 넣어준다.
 
 
 ### 3) `home.html`
-1. blog/templates/home.html 파일에 템플릿의 `index.html` 코드 복붙
+
+#### 1. blog/templates/home.html 파일에 템플릿의 `index.html` 코드 복붙
 
 
 <details>
@@ -130,10 +131,10 @@ STATICFILES_DIRS = (os.path.join('static'),)
 </details>
 
 
-이상하게 나오는 이유는  `home.html`에서 `settings.py`가 찾아준 staticfile들을 페이지에 load해주어야 하는데 아직 해주지 않아서이다.
+- 이상하게 나오는 이유는  `home.html`에서 `settings.py`가 찾아준 staticfile들을 페이지에 load해주어야 하는데 아직 해주지 않아서이다.
 
 
-2. static 붙여주기
+#### 2. static 붙여주기
 
 <details>
 <summary><strong>blog/templates/home.html</strong></summary>
@@ -164,7 +165,7 @@ STATICFILES_DIRS = (os.path.join('static'),)
 ```
 </details>
 
-3. script에도 붙여주자
+#### 3. script에도 붙여주자
 
 wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다.
 
@@ -225,7 +226,7 @@ wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다
 
 
 
-4. home.html 요약
+#### 4. home.html 요약
 
 복잡한 템플릿을 분석해보자면 크게 4가지 요소로 나눠진다.
 
@@ -247,7 +248,7 @@ wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다
 
 
 
-5. 먼저 `2. carousel` 바꿔주자
+#### 5. 먼저 `2. carousel` 바꿔주자
 
 
 <details>
@@ -286,7 +287,7 @@ wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다
 
 </details>
 
-6. `3.본문` 을 수정해주자
+#### 6. `3.본문` 을 수정해주자
 
 ![](./img/11.PNG)
 
@@ -601,6 +602,7 @@ wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다
 </html>
 ```
 </details>
+
 
 # 3. DB 연동하는법
 
