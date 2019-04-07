@@ -305,7 +305,7 @@ wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다
 <details>
 <summary><strong>blog/templates/home.html</strong></summary>
     
-```html
+```python
       <section class="site-section py-sm">
         <div class="container">
           <div class="row">
@@ -366,7 +366,8 @@ wrap을 숨김 처리하면 밑에 `script` 파트 또한 static을 붙여준다
 
 <details>
 <summary><strong>blog/templates/home.html 전체 코드</strong></summary>
-```html
+
+```python
 {% load staticfiles %}
 <!doctype html>
 <html lang="en">
@@ -645,6 +646,7 @@ class Post(models.Model):
 
 <details>
 <summary><strong>myblog/settings.py</strong></summary>
+
 ```python
 
 STATIC_URL = '/static/'
@@ -696,7 +698,7 @@ from .models import Post
 
 admin.site.register(Post)
 ```
-</detail>
+</details>
 
 ### 6) 일단 실행해보자
 
@@ -726,8 +728,6 @@ blog/models.py
         return self.title
 ```
 
-
-
 ![](./img/14.PNG)
 
 
@@ -742,20 +742,26 @@ blog/models.py
 
 <details>
 <summary><strong>blog/views.py</strong></summary>
+
 ```python
 from django.shortcuts import render
 
 from .models import Post
-# Create your views here.
+
 def home(request):
     posts = Post.objects.all().order_by('-created_at')
     return render(request, 'home.html',{'posts':posts})
 ```
+
 </details>
 
-### 8) `home.html`에서 Post들 받기
+
+### 9) `home.html`에서 Post들 받기
+
+
 <details>
 <summary><strong>blog/templates/home.html</strong></summary>
+
 ```python
                 {% for post in posts %}
                 <div class="col-md-6">
@@ -775,6 +781,7 @@ def home(request):
                 </div>
                 {% endfor %}
 ```
+
 </details>
 
 
@@ -782,8 +789,7 @@ def home(request):
 
 
 
-수정된  페이지 모습
-
+아래는 수정된  페이지 모습
 
 
 
