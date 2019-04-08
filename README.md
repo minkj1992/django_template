@@ -93,10 +93,12 @@ def home(request):
 
 <details>
 <summary><strong>myblog/settings.py</strong></summary>
+
 ```python
 #  스태틱 파일들이 존재하는 폴더 위치를 알려준다.
 STATICFILES_DIRS = (os.path.join('static'),)
 ```
+
 </details>
 
 
@@ -659,6 +661,7 @@ STATICFILES_DIRS = (os.path.join('static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 ```
+
 </details>
 
 
